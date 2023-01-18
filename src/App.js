@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+// Khali
+import React, { useState } from 'react';
+import LeftSidebar from './LeftSidebar';
 
 function App() {
+  const [budget, setBudget] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div style={styles.text}>
+        <LeftSidebar budget={budget} />
+      </div>
   );
 }
+
+const styles = {
+  text: {
+    color: '#f8f9f9',
+  },
+};
 
 export default App;
