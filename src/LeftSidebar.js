@@ -1,9 +1,8 @@
 // LeftSidebar.js
-// Author: Khali & Loris
-const LeftSidebar = ({ budget }) => {
+// Author: Khali & Loris Hütter
+import React from 'react';
+const LeftSidebar = ({ budget, handleModalOpen }) => {
     const budgetColor = budget >= 0 ? "#03DAC6" : "#FF5733";
-
-
 
     return (
         <div style={styles.sidebar}>
@@ -17,15 +16,13 @@ const LeftSidebar = ({ budget }) => {
                 <div style={styles.line} />
 
                 <div style={styles.buttonContainer}>
-                    <button style={styles.expenseButton}>Ausgabe</button>
-                    <button style={styles.incomeButton}>Einnahme</button>
+                    <button style={styles.expenseButton} onClick={() => handleModalOpen('expense')}>Ausgabe</button>
+                    <button style={styles.incomeButton} onClick={() => handleModalOpen('income')}>Einnahme</button>
                 </div>
             </div>
         </div>
     );
 }
-
-
 
 const styles = {
     sidebar: {
@@ -82,7 +79,5 @@ const styles = {
         cursor: 'pointer',
     },
 };
-
-
 
 export default LeftSidebar;
