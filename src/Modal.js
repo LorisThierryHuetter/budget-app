@@ -1,10 +1,25 @@
 // Modal.js 
 // Author: Loris Hütter
+/* eslint-disable */          
+
 import React, { useState } from 'react';
 
 const Modal = ({ open, type, handleClose, handleAddEntry }) => {
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
+
+const DropdownData = [{id: 0, label: "Lohn"}, {id: 1, label: "Essen"}, {id: 2, label: "Kleider"}, {id: 3, label: "Freizeit"}, {id: 4, label: "Abonnements"}];
+
+const Dropdown = () => {
+  const [isOpen, setOpen] = useState(false);
+  const [items, setItem] = useState(DropdownData);
+  const [selectedItem, setSelectedItem] = useState(null);
+  
+  const toggleDropdown = () => setOpen(!isOpen);
+  
+  const handleItemClick = (id) => {
+    selectedItem == id ? setSelectedItem(null) : setSelectedItem(id);
+  }}
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,6 +53,20 @@ const Modal = ({ open, type, handleClose, handleAddEntry }) => {
         </label>
         <div style={styles.buttonContainer}>
           <button style={styles.cancelButton} onClick={handleClose}>Abbrechen</button>
+          {/* <div className='dropdown'>
+      <div className='dropdown-header' onClick={toggleDropdown}>
+        {selectedItem ? items.find(item => item.id == selectedItem).label : "Select your destination"}
+        <i className={`fa fa-chevron-right icon ${isOpen && "open"}`}></i>
+      </div>
+      <div className={`dropdown-body ${isOpen && 'open'}`}>
+        {items.map(item => (
+          <div className="dropdown-item" onClick={e => handleItemClick(e.target.id)} id={item.id}>
+            <span className={`dropdown-item-dot ${item.id == selectedItem && 'selected'}`}>• </span>
+            {item.label}
+          </div>
+        ))}
+      </div>
+    </div>  */}
           <button type="submit" style={styles.submitButton}>
             {type === 'expense' ? 'Subtract' : 'Add'}
           </button>

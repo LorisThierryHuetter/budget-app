@@ -23,11 +23,11 @@ function App() {
       const handleAddEntry = (title, amount) => {
         let newEntries = [...entries];
         if (modalType === 'expense') {
-          newEntries.push({ title, amount: -amount });
-          setBudget(budget - amount);
+          newEntries.push({ title, amount: - parseInt(amount) });
+          setBudget(budget - parseInt(amount));
         } else if (modalType === 'income') {
           newEntries.push({ title, amount });
-          setBudget(budget + amount);
+          setBudget(budget + parseInt(amount));
         }
         setEntries(newEntries);
         handleModalClose();
