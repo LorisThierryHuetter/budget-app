@@ -11,9 +11,11 @@ const EntryList = ({ entries, handleRemoveEntry, mainColor }) => {
           <div style={styles.entryAmount}>
             CHF <span style={{ color: entry.amount >= 0 ? mainColor : '#F44336' }}>{entry.amount}</span>
           </div>
+          <div>{entry.selectedCategory}</div>
           <div style={styles.removeButton} onClick={() => handleRemoveEntry(index)}>X</div>
         </div>
       ))}
+      {console.log(entries)}
     </div>
   );
 }
