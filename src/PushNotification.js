@@ -29,6 +29,7 @@ const styles = {
     padding: "20px",
     borderRadius: "10px",
     boxShadow: "1px 1px 5px #111",
+    textAlign: "center"
   },
   cancelButton: {
     backgroundColor: "#F44336",
