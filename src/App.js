@@ -4,12 +4,14 @@ import React, { useEffect,useState } from 'react';
 import LeftSidebar from './LeftSidebar';
 import Modal from './Modal';
 import EntryList from './EntryList';
+import PushNotification from "./PushNotification";
 
 function App() {
   const [budget, setBudget] = useState(0);
   const [entries, setEntries] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState('');
+  const [notificationState, setNotificationState] = useState(false);
   const [data, setData] = useState(null);
   const [identifierKey, setIdentifierKey] = useState(null);
 
@@ -107,19 +109,30 @@ function App() {
       }
 
   const handleModalOpen = (type) => {
-        setModalOpen(true);
-        setModalType(type);
-      }
-    
-      const handleModalClose = () => {
-        setModalOpen(false);
-      }
+    setModalOpen(true);
+    setModalType(type);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const handleShowNotification = () => {
+    setNotificationState(true);
+  };
+
+  const handleCloseNotification = () => {
+    setNotificationState(false);
+  };
 
       const handleAddEntry = (title, amount, selectedCategory) => {
         let newEntries = [...entries];
         if (modalType === 'expense') {
           newEntries.push({ title, amount: - parseInt(amount), selectedCategory});
           setBudget(budget - parseInt(amount));
+          if (budget - amount <= 0) {
+            handleShowNotification();
+          }
         } else if (modalType === 'income') {
           newEntries.push({ title, amount: parseInt(amount), selectedCategory});
           setBudget(budget + parseInt(amount));
@@ -153,6 +166,10 @@ function App() {
           handleClose={handleModalClose} 
           handleAddEntry={handleAddEntry} 
         />
+        <PushNotification
+        open={notificationState}
+        handleClose={handleCloseNotification}
+      />
         <EntryList 
           entries={entries} 
           handleRemoveEntry={handleRemoveEntry} 
@@ -164,8 +181,8 @@ function App() {
 
 const styles = {
   text: {
-    backgroundColor: '#F5F5F5',
-    color: '#f8f9f9',
+    backgroundColor: "#F5F5F5",
+    color: "#f8f9f9",
   },
 };
 
