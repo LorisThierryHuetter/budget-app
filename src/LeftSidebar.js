@@ -1,7 +1,7 @@
 // LeftSidebar.js
 // Author: Khali & Loris Hütter
 import React from 'react';
-const LeftSidebar = ({ budget, handleModalOpen }) => {
+const LeftSidebar = ({ budget, handleModalOpen, handleUpdate, handleReset }) => {
     const budgetColor = budget >= 0 ? "#03DAC6" : "#FF5733";
 
     return (
@@ -18,6 +18,11 @@ const LeftSidebar = ({ budget, handleModalOpen }) => {
                 <div style={styles.buttonContainer}>
                     <button style={styles.expenseButton} onClick={() => handleModalOpen('expense')}>Ausgabe</button>
                     <button style={styles.incomeButton} onClick={() => handleModalOpen('income')}>Einnahme</button>
+                </div>
+                <br></br>
+                <div style={styles.buttonContainer}>
+                    <button style={styles.dataButton} onClick={handleUpdate}>Update</button>
+                    <button style={styles.dataButton} onClick={handleReset}>Reset</button>
                 </div>
             </div>
         </div>
@@ -71,6 +76,15 @@ const styles = {
     },
     incomeButton: {
         backgroundColor: '#03DAC6',
+        color: '#f8f9f9',
+        fontWeight: 'bold',
+        padding: '10px',
+        borderRadius: '5px',
+        border: 'none',
+        cursor: 'pointer',
+    },
+    dataButton: {
+        backgroundColor: '#1E90FF',
         color: '#f8f9f9',
         fontWeight: 'bold',
         padding: '10px',
